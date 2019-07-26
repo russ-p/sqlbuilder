@@ -79,6 +79,7 @@ class SelectQuery {
 		sb.append(tables.stream().collect(Collectors.joining(", ")));
 
 		if (!join.isEmpty()) {
+			sb.append("\n");
 			sb.append(join.stream().collect(Collectors.joining("\n  ")));
 		}
 

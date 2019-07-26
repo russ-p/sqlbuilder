@@ -1,6 +1,6 @@
 package com.github.russ_p.sqlbuilder.select;
 
-public class JoinConditionBuilder extends AbstractQueryBuilder<SelectQuery> {
+public class JoinConditionBuilder extends AbstractQueryBuilder<SelectQuery> implements JoinMixin {
 
 	public JoinConditionBuilder(SelectQuery query, String condition) {
 		super(query);
@@ -11,23 +11,9 @@ public class JoinConditionBuilder extends AbstractQueryBuilder<SelectQuery> {
 		return new WhereBuilder(query, condition);
 	}
 
-	public JoinBuilder join(String table) {
-		return innerJoin(table);
+	@Override
+	public SelectQuery getQuery() {
+		return query;
 	}
 
-	public JoinBuilder innerJoin(String table) {
-		return new JoinBuilder(query, "inner", table);
-	}
-
-	public JoinBuilder leftJoin(String table) {
-		return new JoinBuilder(query, "left", table);
-	}
-
-	public JoinBuilder rightJoin(String table) {
-		return new JoinBuilder(query, "right", table);
-	}
-
-	public JoinBuilder crossJoin(String table) {
-		return new JoinBuilder(query, "cross", table);
-	}
 }
