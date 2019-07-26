@@ -1,0 +1,17 @@
+kind: pipeline
+name: default
+
+steps:
+
+- name: install
+  image: maven:3.6.1-jdk-8-slim
+  volumes:
+  - name: mvnrepo
+    path: /root/.m2  
+  commands:
+  - mvn install
+
+volumes:
+- name: mvnrepo
+  host:
+    path: /media/data/storage/.m2
